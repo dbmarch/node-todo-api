@@ -67,11 +67,11 @@ app.delete("/todos/:id", (req, res) => {
   }
   console.log("removing id", id);
   Todo.findByIdAndRemove(id).then(todo => {
-    console.log("Todo Removed", todo);
+    //console.log("Todo Removed", todo);
     if (!todo) {
       return res.status(404).send("Not Found");
     }
-    console.log("todo deleted");
+    //console.log("todo deleted");
     res.send({ todo });
   });
 });
