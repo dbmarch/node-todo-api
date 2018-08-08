@@ -66,7 +66,7 @@ app.delete("/todos/:id", (req, res) => {
   if (!ObjectId.isValid(id)) {
     return res.status(404).send("Invalid ID");
   }
-  console.log("removing id", id);
+  // console.log("removing id", id);
   Todo.findByIdAndRemove(id).then(todo => {
     //console.log("Todo Removed", todo);
     if (!todo) {
@@ -81,8 +81,8 @@ app.patch("/todos/:id", (req, res) => {
   var id = req.params.id;
   var body = _.pick(req.body, ["text", "completed"]);
 
-  console.log("PATCH", id);
-  console.log(body);
+  // console.log("PATCH", id);
+  // console.log("body..", body);
 
   if (!ObjectId.isValid(id)) {
     return res.status(404).send();
@@ -99,6 +99,7 @@ app.patch("/todos/:id", (req, res) => {
       if (!todo) {
         return res.status(404).send();
       }
+      // console.log("sending...", todo);
       res.send({ todo });
     })
     .catch(e => {
