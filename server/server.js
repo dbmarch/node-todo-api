@@ -108,6 +108,25 @@ app.patch("/todos/:id", (req, res) => {
     });
 });
 
+// POST /users
+app.post("/users", (req, res) => {
+  console.log("POST /users");
+  console.log(req.body);
+  var body = _.pick(req.body, ["email", "password"]);
+  var user = new User(body);
+
+  user
+    .save()
+    .then(user => {
+      console.log(user);
+      res.send(user);
+    })
+    .catch(e => {
+      console.log(e);
+      res.status(400).send(e);
+    });
+});
+
 app.listen(port, () => {
   console.log(`Started on port ${port}`);
 });
